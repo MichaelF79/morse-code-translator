@@ -2,32 +2,32 @@
 
 // have object with letters
 var morseObj = {
-  A: '.-',
-  B: '-...',
-  C: '-.-.',
-  D: '-..',
-  E: '.',
-  F: '..-.',
-  G: '--.',
-  H: '....',
-  I: '..',
-  J: '.---',
-  K: '-.-',
-  L: '.-..',
-  M: '--',
-  N: '-.',
-  O: '---',
-  P: '.--.',
-  Q: '--.-',
-  R: '.-.',
-  S: '...',
-  T: '-',
-  U: '..-',
-  V: '...-',
-  W: '.--',
-  X: '-..-',
-  Y: '-.--',
-  Z: '--..',
+  a: '.-',
+  b: '-...',
+  c: '-.-.',
+  d: '-..',
+  e: '.',
+  f: '..-.',
+  g: '--.',
+  h: '....',
+  i: '..',
+  j: '.---',
+  k: '-.-',
+  l: '.-..',
+  m: '--',
+  n: '-.',
+  o: '---',
+  p: '.--.',
+  q: '--.-',
+  r: '.-.',
+  s: '...',
+  t: '-',
+  u: '..-',
+  v: '...-',
+  w: '.--',
+  x: '-..-',
+  y: '-.--',
+  z: '--..',
   0: '-----',
   1: '.----',
   2: '..---',
@@ -44,41 +44,26 @@ var form = document.querySelector('form');
 var input = document.querySelector('input');
 var output = document.querySelector('output');
 
-var convertToMorse = function convertToMorse() {
-  var arrayOfLetters = input.value.split('').map(function (_char) {
-    return _char.toUpperCase();
+function convertMorse() {
+  var arrayOfLetters = input.value.split('').map(function (letter) {
+    return letter.toLowerCase();
   });
-  var convertedToMorse = arrayOfLetters.map(function (_char2) {
-    if (morseObj[_char2]) {
-      return morseObj[_char2];
-    } else if (_char2 === ' ') {
+  var convertedMorse = arrayOfLetters.map(function (letter) {
+    if (morseObj[letter]) {
+      return morseObj[letter];
+    } else if (letter === ' ') {
       return '/';
-    } else return _char2;
-  }).join(' ');
-  return convertedToMorse;
-};
+    } else return letter;
+  }).join('');
+  return convertedMorse;
+}
 
-var convertToWords = function convertToWords() {
-  var arrayOfMorse = input.value.split('/');
-  return arrayOfMorse.map(function (string) {
-    return string.split(' ').map(function (_char3) {
-      if (Object.values(morseObj).includes(_char3)) {
-        return Object.keys(morseObj).find(function (key) {
-          return morseObj[key] === _char3;
-        });
-      } else return _char3;
-    }).join('');
-  }).join(' ');
-};
+var onSubmit = function onSubmit(code) {
+  code.preventDefault();
 
-var handleSubmit = function handleSubmit(e) {
-  e.preventDefault();
-
-  if (input.value.match(/[a-z0-9]/gi)) {
-    output.innerText = convertToMorse();
-  } else {
-    output.innerText = convertToWords();
+  if (input.value.match(/[a-z0-9]/)) {
+    output.innertext = convertMorse();
   }
 };
 
-form.addEventListener('submit', handleSubmit);
+form.addEventListener('submit', onSubmit);

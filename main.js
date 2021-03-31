@@ -1,32 +1,32 @@
 // have object with letters
 
 const morseObj = {
-	A: '.-',
-	B: '-...',
-	C: '-.-.',
-	D: '-..',
-	E: '.',
-	F: '..-.',
-	G: '--.',
-	H: '....',
-	I: '..',
-	J: '.---',
-	K: '-.-',
-	L: '.-..',
-	M: '--',
-	N: '-.',
-	O: '---',
-	P: '.--.',
-	Q: '--.-',
-	R: '.-.',
-	S: '...',
-	T: '-',
-	U: '..-',
-	V: '...-',
-	W: '.--',
-	X: '-..-',
-	Y: '-.--',
-	Z: '--..',
+	a: '.-',
+	b: '-...',
+	c: '-.-.',
+	d: '-..',
+	e: '.',
+	f: '..-.',
+	g: '--.',
+	h: '....',
+	i: '..',
+	j: '.---',
+	k: '-.-',
+	l: '.-..',
+	m: '--',
+	n: '-.',
+	o: '---',
+	p: '.--.',
+	q: '--.-',
+	r: '.-.',
+	s: '...',
+	t: '-',
+	u: '..-',
+	v: '...-',
+	w: '.--',
+	x: '-..-',
+	y: '-.--',
+	z: '--..',
   0: '-----',
 	1: '.----',
 	2: '..---',
@@ -47,19 +47,20 @@ const input = document.querySelector('input');
 const output = document.querySelector('output');
 
 
-const convertMorse = () => {
-	const arrayOfLetters = input.value.split('').map((letter) => letter.toUpperCase());
+function convertMorse() {
+	const arrayOfLetters = input.value.split('').map((letter) => letter.toLowerCase());
 	const convertedMorse = arrayOfLetters
 		.map((letter) => {
 			if (morseObj[letter]) {
 				return morseObj[letter];
 			} else if (letter === ' ') {
 				return '/';
-			} else return letter;
+			} else
+				return letter;
 		})
 		.join('');
 	return convertedMorse;
-};
+}
 
 const onSubmit = (code) => {
 	code.preventDefault();
@@ -68,6 +69,6 @@ const onSubmit = (code) => {
 	}
 };
 
-button.addEventListener('submit', onSubmit);
+form.addEventListener('submit', onSubmit);
 
 
