@@ -48,25 +48,37 @@ var convertToMorse = function convertToMorse() {
   var arrayOfLetters = input.value.split('').map(function (_char) {
     return _char.toUpperCase();
   });
-  var convertedMorse = arrayOfLetters.map(function (_char2) {
+  var convertedToMorse = arrayOfLetters.map(function (_char2) {
     if (morseObj[_char2]) {
       return morseObj[_char2];
     } else if (_char2 === ' ') {
       return '/';
     } else return _char2;
   }).join(' ');
-  return convertedMorse;
+  return convertedToMorse;
+};
+
+var convertToWords = function convertToWords() {
+  var arrayOfMorse = input.value.split('/');
+  return arrayOfMorse.map(function (string) {
+    return string.split(' ').map(function (_char3) {
+      if (Object.values(morseObj).includes(_char3)) {
+        return Object.keys(morseObj).find(function (key) {
+          return morseObj[key] === _char3;
+        });
+      } else return _char3;
+    }).join('');
+  }).join(' ');
 };
 
 var handleSubmit = function handleSubmit(e) {
   e.preventDefault();
 
-  if (input.value.match(/[a-z1-0]/gi)) {
+  if (input.value.match(/[a-z0-9]/gi)) {
     output.innerText = convertToMorse();
   } else {
     output.innerText = convertToWords();
   }
-}; // add eventListener
-
+};
 
 form.addEventListener('submit', handleSubmit);

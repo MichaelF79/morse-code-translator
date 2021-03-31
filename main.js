@@ -46,29 +46,28 @@ const form = document.querySelector('form');
 const input = document.querySelector('input');
 const output = document.querySelector('output');
 
-const convertToMorse = () => {
-	const arrayOfLetters = input.value.split('').map((char) => char.toUpperCase());
+
+const convertMorse = () => {
+	const arrayOfLetters = input.value.split('').map((letter) => letter.toUpperCase());
 	const convertedMorse = arrayOfLetters
-		.map((char) => {
-			if (morseObj[char]) {
-				return morseObj[char];
-			} else if (char === ' ') {
+		.map((letter) => {
+			if (morseObj[letter]) {
+				return morseObj[letter];
+			} else if (letter === ' ') {
 				return '/';
-			} else return char;
+			} else return letter;
 		})
-		.join(' ');
+		.join('');
 	return convertedMorse;
 };
 
-const handleSubmit = (e) => {
-	e.preventDefault();
-	if (input.value.match(/[a-z1-0]/gi)) {
-		output.innerText = convertToMorse();
-	} else {
-		output.innerText = convertToWords();
+const onSubmit = (code) => {
+	code.preventDefault();
+	if (input.value.match(/[a-z0-9]/)) {
+		output.innertext = convertMorse();
 	}
 };
 
-// add eventListener
+button.addEventListener('submit', onSubmit);
 
-form.addEventListener('submit', handleSubmit);
+
