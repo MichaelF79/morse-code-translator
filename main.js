@@ -1,33 +1,32 @@
 // have object with letters
 
-const morseObj = {
-	a: '.-',
-	b: '-...',
-	c: '-.-.',
-	d: '-..',
-	e: '.',
-	f: '..-.',
-	g: '--.',
-	h: '....',
-	i: '..',
-	j: '.---',
-	k: '-.-',
-	l: '.-..',
-	m: '--',
-	n: '-.',
-	o: '---',
-	p: '.--.',
-	q: '--.-',
-	r: '.-.',
-	s: '...',
-	t: '-',
-	u: '..-',
-	v: '...-',
-	w: '.--',
-	x: '-..-',
-	y: '-.--',
-	z: '--..',
-  0: '-----',
+const morseObject = {
+	A: '.-',
+	B: '-...',
+	C: '-.-.',
+	D: '-..',
+	E: '.',
+	F: '..-.',
+	G: '--.',
+	H: '....',
+	I: '..',
+	J: '.---',
+	K: '-.-',
+	L: '.-..',
+	M: '--',
+	N: '-.',
+	O: '---',
+	P: '.--.',
+	Q: '--.-',
+	R: '.-.',
+	S: '...',
+	T: '-',
+	U: '..-',
+	V: '...-',
+	W: '.--',
+	X: '-..-',
+	Y: '-.--',
+	Z: '--..',
 	1: '.----',
 	2: '..---',
 	3: '...--',
@@ -37,38 +36,33 @@ const morseObj = {
 	7: '--...',
 	8: '---..',
 	9: '----.',
-	
+	0: '-----',
 };
-
-// pull typed text into JS
 
 const form = document.querySelector('form');
 const input = document.querySelector('input');
-const output = document.querySelector('output');
+const output = document.querySelector('.output');
 
-
-function convertMorse() {
-	const arrayOfLetters = input.value.split('').map((letter) => letter.toLowerCase());
-	const convertedMorse = arrayOfLetters
+const convertToMorse = () => {
+	const lettersArr = input.value.split('').map((letter) => letter.toUpperCase());
+	const convertedMorse = lettersArr
 		.map((letter) => {
-			if (morseObj[letter]) {
-				return morseObj[letter];
+			if (morseObject[letter]) {
+				return morseObject[letter];
 			} else if (letter === ' ') {
 				return '/';
-			} else
-				return letter;
+			} else return letter;
 		})
-		.join('');
+		.join(' ');
 	return convertedMorse;
-}
+};
 
-const onSubmit = (code) => {
-	code.preventDefault();
+
+const handleSubmit = (element) => {
+	element.preventDefault();
 	if (input.value.match(/[a-z0-9]/)) {
-		output.innertext = convertMorse();
+		output.innerHTML = convertToMorse();
 	}
 };
 
-form.addEventListener('submit', onSubmit);
-
-
+form.addEventListener('submit', handleSubmit);

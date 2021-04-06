@@ -10,7 +10,7 @@ html {
   font-size: 62.5%;
 }
 html body {
-  background-color: #c3f7c8;
+  background-color: #d9f7dc;
   color: #2b2b2b;
 }
 html body header {
@@ -21,7 +21,7 @@ html body header h1 {
   margin: 1rem;
 }
 html body .translate-box h2 {
-  font-size: 4rem;
+  font-size: 3rem;
   margin: 1rem;
 }
 html body .translate-box p {
@@ -41,7 +41,9 @@ html body .translate-box form button {
   padding: 1rem;
 }
 html body .translate-box form input {
+  font-size: 2.5rem;
   text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
 }
 html body .translate-box form button {
   cursor: grab;
