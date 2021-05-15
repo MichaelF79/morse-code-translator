@@ -57,11 +57,28 @@ const convertToMorse = () => {
 	return convertedMorse;
 };
 
+const convertToWords = () => {
+	const MorseArr = input.value.split('/');
+	return MorseArr
+		.map((string) => {
+			return string
+				.split(' ')
+				.map((char) => {
+					if (Object.values(morseObject).includes(char)) {
+						return Object.keys(morseObject).find((key) => morseObject[key] === char);
+					} else return char;
+				})
+				.join('');
+		})
+		.join(' ');
+};
 
 const handleSubmit = (element) => {
 	element.preventDefault();
-	if (input.value.match(/[a-z0-9]/)) {
-		output.innerHTML = convertToMorse();
+	if (input.value.match(/[a-z0-9]/gi)) {
+		output.innerText = convertToMorse();
+	} else {
+		output.innerText = convertToWords();
 	}
 };
 
