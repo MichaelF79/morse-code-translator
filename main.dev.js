@@ -57,11 +57,26 @@ var convertToMorse = function convertToMorse() {
   return convertedMorse;
 };
 
+var convertToWords = function convertToWords() {
+  var MorseArr = input.value.split('/');
+  return MorseArr.map(function (string) {
+    return string.split(' ').map(function (_char) {
+      if (Object.values(morseObject).includes(_char)) {
+        return Object.keys(morseObject).find(function (key) {
+          return morseObject[key] === _char;
+        });
+      } else return _char;
+    }).join('');
+  }).join(' ');
+};
+
 var handleSubmit = function handleSubmit(element) {
   element.preventDefault();
 
-  if (input.value.match(/[a-z0-9]/)) {
-    output.innerHTML = convertToMorse();
+  if (input.value.match(/[a-z0-9]/gi)) {
+    output.innerText = convertToMorse();
+  } else {
+    output.innerText = convertToWords();
   }
 };
 
